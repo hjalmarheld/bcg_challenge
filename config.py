@@ -1,9 +1,9 @@
 from pathlib import Path
 
-# paths to datasets 
-transactions_path = Path('data', 'transaction_data.parquet')
-relations_path = Path('data', 'sales_client_relationship_dataset.csv')
-output_path = Path('data', 'churn_predictions.csv')
+# paths to datasets
+transactions_path = Path("data", "transaction_data.parquet")
+relations_path = Path("data", "sales_client_relationship_dataset.csv")
+output_path = Path("data", "churn_predictions.csv")
 
 # sales decrease to count as churn (standard = -0.5)
 churn_threshhold = -0.5
@@ -14,7 +14,7 @@ period = "3mo"
 
 # size of sliding window for training data
 # -1 to include all data
-window =- 1
+window = -1
 
 # save and load processed data as a pickle
 cache = True
