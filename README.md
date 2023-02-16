@@ -31,6 +31,8 @@ Our repository is structured in the following way:
    |-----transaction data
    |-----relationship data
    |-----model output
+   |--cache (optional)
+   |-----cached processed data
    |--model
    |-----model_pipeline.py
    |-----model.py
@@ -40,7 +42,9 @@ Our repository is structured in the following way:
    |--logs.csv
 ```
 
-### ❤️ Main.py
+## ℹ️ File descriptions 
+
+- Main.py :
 This python file serves as the main script and heart of the repository that runs the entire pipeline for the project.
 
 - config.py :
@@ -52,16 +56,16 @@ The logs.csv will contain the results of the different models trained.
 - data :
 The Data folder contains the dataset used to train and test the model, prediction outputs and the data pipeline.
 
-- data_pipeline.py :
+   - data_pipeline.py :
 This file contains all the feature engineering and transformations done to prepare the training and test sets for the model.
 
 - model :
 The folder containing the whole churn prediction model pipeline from data loading and preprocessing to training and predicting.
 
--- model.py :
+   - model.py :
 This file contains the model architecture used.
 
--- model_pipeline.py :
+   - model_pipeline.py :
 This file contains the model pipeline: backtesting, live predictions.
 
 
