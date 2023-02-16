@@ -8,14 +8,21 @@ def model_pipeline(
         model=model,
         window=config.window,
         ):
+    """Back testing and predictions on live data.
+    Args:
+        training: the training set.
+        test: the testing set.
+        model: the model architecture defined in model.py.
+        window: the window for back testing.
+    Returns:
+        results of model and predictions.
+    """
     time_points = training.sort('date').select(pl.col('date')).unique()[:, 0]
 
     # the first part of this function enables back testing of models, the second part does
     # predictions on live data
 
-    #
     # back testing
-    # 
     assert window<time_points.shape[0]-1, "window too large, > %s" % (time_points.shape[0]-1)
 
     if window==-1:
@@ -93,9 +100,7 @@ def model_pipeline(
     results = {'model': str(model), 'accuracy':accuracy, 'precision':precision, 'recall':recall}
 
 
-    #
     # live data
-    #
 
     if static:
         start_date = time_points[0]

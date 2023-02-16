@@ -7,8 +7,12 @@ def get_data(
         transaction_path: str=config.transactions_path,
         relation_path: str=config.relations_path
         ) -> pl.DataFrame:
-    """
-    get data
+    """Load the data.
+    Args:
+        transaction_path: path for tran.
+        relation_path: path for client relation data.
+    Returns:
+        Dataframe of transactions and relationship data.
     """
     transactions = (
         pl.read_parquet(transaction_path).lazy()
@@ -34,8 +38,11 @@ def get_data(
 def get_order_delta(
         df: pl.DataFrame
         ) -> pl.DataFrame:
-    """
-    get time between orders
+    """Get time between orders.
+    Args:
+        df: input dataframe.
+    Returns:
+        Dataframe with time between orders added.
     """
     _df = (
         df.lazy()
@@ -60,8 +67,11 @@ def get_dynamic_features(
         df: pl.DataFrame,
         dt: str
         ) -> pl.DataFrame:
-    """
-    get features on quarterly basis
+    """Get features on a quarterly basis.
+    Args:
+        df: input dataframe.
+    Returns:
+        Dataframe with features on a quarterly basis added.
     """
     return (   
         df.lazy()
@@ -88,8 +98,11 @@ def get_dynamic_features(
 def get_rolling_features(
         df: pl.DataFrame,
         ) -> pl.DataFrame:
-    """
-    get rolling features on quarterly basis
+    """Get Rolling features on a quarterly basis.
+    Args:
+        df: input dataframe.
+    Returns:
+        Dataframe with rolling features on a quarterly basis added.
     """
     return (   
         df.lazy()
@@ -109,6 +122,13 @@ def get_churn(
         df: pl.DataFrame,
         churn_threshhold: float
         ) -> pl.DataFrame:
+    """Create churn column based on sales change threshold from one quarter to the next.
+    Args:
+        df: input dataframe.
+        churn threshold: threshold set for sales change.
+    Returns:
+        Dataframe with churn column added.
+    """
     return (
         df.lazy()
         .sort('date')
@@ -121,8 +141,12 @@ def get_top_clients(
         df: pl.DataFrame,
         n_clients: int
         ) -> pl.DataFrame:
-    """
-    get top clients for given period
+    """Filter for top clients within a given period.
+    Args:
+        df: input dataframe.
+        n_clients: number of clients to filter for.
+    Returns:
+        Dataframe with top clients for each period.
     """
     return (
         df.lazy()
@@ -135,9 +159,12 @@ def get_top_clients(
 def get_static_features(
         df: pl.DataFrame
         ) -> pl.DataFrame:
-    """
-    get static features and target
-    """     
+    """Get static features.
+    Args:
+        df: input dataframe.
+    Returns:
+        Dataframe with static features.
+    """    
     return (
         df.lazy()
         .groupby('client_id')
@@ -152,6 +179,12 @@ def merge_static(
         dynamic: pl.DataFrame,
         static: pl.DataFrame,
         ) -> pl.DataFrame:
+    """Merge dataframes with static and dynamic features.
+    Args:
+        dynamic: dataframe with dynamic features.
+    Returns:
+        static: dataframe with static features.
+    """
     df = (   
         dynamic.lazy()
         .join(
@@ -188,6 +221,16 @@ def data_pipeline(
         transaction_path: str=config.transactions_path,
         relations_path: str=config.relations_path
         ) -> pl.DataFrame:
+    """Full piepline for data loading and preproocessing.
+    Args:
+        dt: span of churn periods.
+        churn_threshold: sales change threshold to determine churn.
+        n_clients: number of clients to filter by (top clients).
+        transaction_path: path for tran.
+        relation_path: path for client relation data.
+    Returns:
+        df: preprocessed dataframe.
+    """
     df = get_data(
         transaction_path=transaction_path,
         relation_path=relations_path)

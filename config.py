@@ -21,3 +21,6 @@ cache = True
 
 # simple logging of results in log.csv file
 logging = True
+
+# parameters of lgbm
+scale_pos_weight = 5

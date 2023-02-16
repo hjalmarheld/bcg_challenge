@@ -4,7 +4,7 @@ This is where you put a model adopting the sklearn api
 Final object must be named model
 """
 
-
+import config
 from lightgbm import LGBMClassifier
 
-model = LGBMClassifier(scale_pos_weight=5)
+model = LGBMClassifier(scale_pos_weight=config.scale_pos_weight)
