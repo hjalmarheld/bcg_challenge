@@ -1,8 +1,8 @@
 import csv
 import config
 import polars as pl
-from data_pipeline import data_pipeline
-from model_pipeline import model_pipeline
+from src.data_pipeline import data_pipeline
+from src.model_pipeline import model_pipeline
 from pathlib import Path
 
 if __name__ == "__main__":

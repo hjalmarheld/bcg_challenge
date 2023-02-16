@@ -1,11 +1,11 @@
 import config
-import model
+from src.model import model
 import polars as pl
 
 def model_pipeline(
         training: pl.DataFrame,
         test: pl.DataFrame,
-        model=model.model,
+        model=model,
         window=config.window,
         ):
     time_points = training.sort('date').select(pl.col('date')).unique()[:, 0]
