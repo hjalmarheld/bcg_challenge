@@ -5,13 +5,20 @@ The goal of this project is to create a churn prediction pipeline that will enab
 
 ## 🚀 Getting started with the repository
 
-To run the model go to the console and run following command: 
+
+- Firstly the data needs to be fetched and placed in the data folder, if needed update the paths in *config.py*.
+
+- Secondly, get the required packages. The data pipeline is entirely *Polars* based and the base model is *LightGBM*, if needed, install the packages by running:
+
+```
+pip install polars lightgbm
+```
+
+- Lastly the model can be ran using the following commands from the source of the repo: 
  
 ```
 python main.py
 ```
-
-You should be at the source of the repository structure (ie. natives_deephedging) when running the command.
 
 ## 🗂 Repository structure
 
@@ -23,18 +30,18 @@ Our repository is structured in the following way:
    |-----data_pipeline.py
    |-----transaction data
    |-----relationship data
+   |-----model output
    |--model
    |-----model_pipeline.py
    |-----model.py
    |--config.py
    |--main.py
    |--README.md
-   |--requirements.txt
    |--logs.csv
 ```
 
-### 📊 data
-The Data folder contains the dataset used to train and test the model. It is also in this folder that the predictions are saved.
+### ❤️ Main.py
+This python file serves as the main script and heart of the repository that runs the entire pipeline for the project.
 
 ### 🔢 config.py 
 The configuration file where parameters are set.
@@ -42,21 +49,20 @@ The configuration file where parameters are set.
 ### 🔢 logs.csv 
 The logs.csv will contain the results of the different models trained.
 
-### ℹ️ src
-The folder containing the whole churn prediction model pipeline from data loading and preprocessing to training and predicting.
+## 📊 data
+The Data folder contains the dataset used to train and test the model, prediction outputs and the data pipeline.
 
 ### data_pipeline.py
 This file contains all the feature engineering and transformations done to prepare the training and test sets for the model.
+
+## ℹ️ model
+The folder containing the whole churn prediction model pipeline from data loading and preprocessing to training and predicting.
 
 ### model.py
 This file contains the model architecture used.
 
 ### model_pipeline.py
-This file contains the model pipeline: training, logging results and logging results.
-
-### ❤️ Main.py
-
-This python file serves as the main script and heart of the repository that runs the entire pipeline for the project.
+This file contains the model pipeline: backtesting, live predictions.
 
 
 ## 📫 Contacts LinkedIn 
