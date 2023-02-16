@@ -5,12 +5,6 @@ The goal of this project is to create a churn prediction pipeline that will enab
 
 ## 🚀 Getting started with the repository
 
-To ensure that all libraries are installed pip install the requirements file:
- 
-```
-pip install -r requirements.txt
-```
-
 To run the model go to the console and run following command: 
  
 ```
@@ -24,12 +18,15 @@ You should be at the source of the repository structure (ie. natives_deephedging
 Our repository is structured in the following way:
 
 ```
-|natives_deephedging
+|bcg_challenge
    |--data
-   |-----config.py
    |-----data_pipeline.py
+   |-----transaction data
+   |-----relationship data
+   |--model
    |-----model_pipeline.py
    |-----model.py
+   |--config.py
    |--main.py
    |--README.md
    |--requirements.txt
