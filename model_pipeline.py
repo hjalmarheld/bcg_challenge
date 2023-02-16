@@ -123,7 +123,8 @@ def model_pipeline(
 
     live_predictions = (
         test.select(pl.col(['client_id']))
-        .with_columns(pl.Series(model.predict(x_real)).alias('predicted_churn '))
+        .with_columns(pl.Series(model.predict(x_real)).alias('predicted_churn'),
+                      pl.Series(model.predict_proba(x_real)[:,1]).alias('predicted_churn_proba'))
     )
 
     return results, live_predictions
